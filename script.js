@@ -40,6 +40,24 @@ operacionActual = op;
 numeroAnterior = numeroActual;
 numeroActual = "0";
 }
+function borrar() {
+    // Si la pantalla dice "Error", reinicia a 0
+    if (numeroActual === "Error") {
+        numeroActual = "0";
+        actualizarPantalla();
+        return;
+    }
+
+    // Si solo queda un dígito, pon 0
+    if (numeroActual.length === 1) {
+        numeroActual = "0";
+    } else {
+        // Borra el último dígito
+        numeroActual = numeroActual.slice(0, -1);
+    }
+
+    actualizarPantalla();
+}
 // Función para calcular el resultado
 function calcular() {
 let resultado;
