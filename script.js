@@ -9,12 +9,27 @@ pantalla.textContent = numeroActual;
 }
 // Función para agregar números
 function agregarNumero(numero) {
-if (numeroActual === "0") {
-numeroActual = numero;
-} else {
-numeroActual += numero;
-}
-actualizarPantalla();
+
+    // Si la pantalla muestra "Error", reiniciamos
+    if (numeroActual === "Error") {
+        numeroActual = numero;
+        actualizarPantalla();
+        return;
+    }
+
+    // Evitar más de un punto decimal
+    if (numero === "." && numeroActual.includes(".")) {
+        return;
+    }
+
+    // Si es cero inicial y no es ".", lo reemplazamos
+    if (numeroActual === "0" && numero !== ".") {
+        numeroActual = numero;
+    } else {
+        numeroActual += numero;
+    }
+
+    actualizarPantalla();
 }
 // Función para manejar operaciones
 function operacion(op) {
